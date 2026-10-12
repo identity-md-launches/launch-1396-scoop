@@ -1,0 +1,8 @@
+# Foundry build artefacts
+out/
+cache/
+broadcast/
+
+# Local environment files are never committed
+.env
+.env.*
