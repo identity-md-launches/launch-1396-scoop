@@ -1,0 +1,24 @@
+{
+  "kind": "custom_token",
+  "token": {
+    "contract": "ScoopToken",
+    "name": "Scoop",
+    "symbol": "SCOOP",
+    "decimals": 18,
+    "constructorArgs": [],
+    "totalSupply": "1000000000000000000000000000"
+  },
+  "contracts": [],
+  "pool": {
+    "pairedCurrency": "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+    "fee": 12500,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "economics": {
+    "poolBps": 8000,
+    "initialMarketCapWei": "2500000000000000000000",
+    "remainderTo": "0xff3e8d9ba776662ca6ed1420ee366afb436d2684"
+  },
+  "notes": "ScoopToken (src/ScoopToken.sol) is a self-contained fixed-supply ERC-20: name Scoop, symbol SCOOP, 18 decimals. Its constructor takes no arguments and mints the whole supply of 1,000,000,000 SCOOP (1000000000000000000000000000 minor units) once to msg.sender, which at launch is the factory; totalSupply is an immutable set in the constructor and the token has no mint, burn, burnFrom, owner, minter, pause, blocklist, proxy or initialize, so the supply can never grow and no privileged call can move or freeze a holder's balance. transfer and transferFrom move exactly the requested amount with no fee, tax or reflection, so the factory's transfer to the MerkleDistributor, claims from it, the single-sided pool seed through the Uniswap v4 PoolManager and swaps each way all arrive whole without any exemption list; the token therefore does not take $factory, $poolManager or $launchNumber. It makes no external calls and its runtime contains no DELEGATECALL, CALLCODE or SELFDESTRUCT. There are no application contracts: the accepted tree contains only the token, a manual deployment script (script/DeployScoop.s.sol, not used by the launch) and tests. The factory pays out the entire supply: the swarm's share to the launch's MerkleDistributor, economics.poolBps (80%) to seed the IMD-paired pool, and the remainder to economics.remainderTo. pool.initialPrice is provenance only; the deployer derives the opening price from economics.initialMarketCapWei and totalSupply."
+}
